@@ -11,7 +11,7 @@ def index():
     return "<h1>Escreva /criar/evento para cria-lo e /deletar/evento para deletar, o evento é da forma 00:00/05 onde se tem o inicio e sua duracao em minutos (botar o 0 quando na tiver nos minutos)</hi>"
 
 
-@app.route('/deletar/<str:evento>')
+@app.route('/deletar/<string:evento>')
 def deletar(evento):
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/latest'
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
@@ -24,7 +24,7 @@ def deletar(evento):
     requests.put(url, json=data, headers=headers)
     return "<h1>Evento deletado<hi>"
 
-@app.route('/criar/<str:evento>')
+@app.route('/criar/<string:evento>')
 def criar(evento):
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/latest'
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
