@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<h1>Perdeu alguma coisa aqui?</hi>"
+    return "<h1>Olá, essa é a aplicação que controla a rega das plantas!</hi><p>Para fins de usuários temos apenas uma rota de interesse, que é a que controla os eventos. Para ir até ela basta clicar no link abaixo:</p><a href='/eventos'>Ir para eventos</a>"
 
 
 @app.route('/deletar/<int:eventID>')
