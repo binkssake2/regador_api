@@ -43,7 +43,7 @@ def eventos():
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     req = requests.get(url, headers=headers)
     infos = req.json()["infos"]
-    return render_template("<h1>{{infos}}<hi>", infos=infos)
+    return str(infos)
 
 
 if __name__ == "__main__":
