@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<h1>Escreva /criar/evento para cria-lo e /deletar/evento para deletar, o evento é da forma 00:00/05 onde se tem o inicio e sua duracao em minutos (botar o 0 quando na tiver nos minutos)</hi>"
+    return "<h1>Escreva /criar/evento para cria-lo e /deletar/evento para deletar, o evento é da forma t00:00d05 onde se tem o inicio e sua duracao em minutos (botar o 0 quando na tiver nos minutos) e para ver tudo /eventos</hi>"
 
 
 @app.route('/deletar/<string:evento>')
@@ -17,7 +17,7 @@ def deletar(evento):
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     req = requests.get(url, headers=headers)
     infos = req.json()["infos"]
-    infos = infos.replace(evento + "," ,"")
+    infos = infos.replace(evento,"")
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/'
     headers = {'Content-Type': 'application/json','secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     data = {"infos":infos}
@@ -30,12 +30,20 @@ def criar(evento):
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     req = requests.get(url, headers=headers)
     infos = req.json()["infos"]
-    infos = infos + "," + evento +","
+    infos = infos + evento
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/'
     headers = {'Content-Type': 'application/json','secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
     return "<h1>Evento criado<hi>"
+
+@app.route('/eventos')
+def eventos():
+    url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/latest'
+    headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
+    req = requests.get(url, headers=headers)
+    infos = req.json()["infos"]
+    return render_template("<h1>{{infos}}<hi>", infos=infos)
 
 
 if __name__ == "__main__":
