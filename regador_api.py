@@ -20,29 +20,23 @@ def deletar(evento):
     req = requests.get(url, headers=headers)
     infos = req.json()["infos"]
     infos = infos.replace(evento + "," ,"")
-    
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/'
     headers = {'Content-Type': 'application/json','secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
-    
 	return "<h1>Evento deletado<hi>"
 
 @app.route('/criar/<str:evento')
 def criar(evento):
-
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/latest'
     headers = {'secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
-
     req = requests.get(url, headers=headers)
     infos = req.json()["infos"]
     infos = infos + "," + evento +","
-    
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/'
     headers = {'Content-Type': 'application/json','secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
-
     return "<h1>Evento criado<hi>"
 
 
