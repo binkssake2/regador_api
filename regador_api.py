@@ -26,9 +26,9 @@ def deletar(evento):
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
     
-	return redirect("<h1>Evento deletado<h1>")
+	return redirect("<h1>Evento deletado<hi>")
 
-@app.route('/criar/<srt:evento')
+@app.route('/criar/<str:evento')
 def criar(evento):
 
     url = 'https://api.jsonbin.io/b/5e61133074ed8a66ce71e657/latest'
@@ -43,11 +43,11 @@ def criar(evento):
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
 
-    return redirect("<h1>Evento criado<h1>")
+    return redirect("<h1>Evento criado<hi>")
 
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
-
+    
