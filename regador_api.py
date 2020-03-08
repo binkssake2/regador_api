@@ -22,7 +22,7 @@ def deletar(evento):
     headers = {'Content-Type': 'application/json','secret-key': '$2b$10$ZYd/uxhp./Hfer6e/nPFW.iAhykkM2rGWMSbO2St8K2YEh7NUc8Z2'}
     data = {"infos":infos}
     requests.put(url, json=data, headers=headers)
-	return "<h1>Evento deletado<hi>"
+    return "<h1>Evento deletado<hi>"
 
 @app.route('/criar/<str:evento')
 def criar(evento):
