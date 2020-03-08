@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<h1>Perdeu alguma coisa aqui?</hi>"
+    return "<h1>Escreva /criar/evento para cria-lo e /deletar/evento para deletar, o evento é da forma t00:00d05 onde se tem o inicio e sua duracao em minutos (botar o 0 quando na tiver nos minutos) e para ver tudo /eventos</hi>"
 
 
 @app.route('/deletar/<int:eventID>')
